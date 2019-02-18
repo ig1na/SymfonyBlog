@@ -19,8 +19,7 @@ Installez les dépendances node :
 
 Créez les tables en faisant une migration :
 
-`bin/console make:migration`
-puis
+`bin/console make:migration`\
 `bin/console doctrine:migration:migrate`
 
 Construisez les assets : 
