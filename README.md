@@ -17,6 +17,11 @@ Installez les dépendances node :
 
 `npm install`
 
+Créez les tables en faisant une migration :
+
+`bin/console make:migration`
+`bin/console doctrine:migration:migrate`
+
 Créez les dummy users :
 
 `bin/console doctrine:fixtures:load`
