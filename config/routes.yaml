@@ -1,3 +1,5 @@
-#index:
-#    path: /
-#    controller: App\Controller\BlogHome::index
+index:
+    path: /
+    controller: App\Controller\ArticleController::index
+app_logout:
+        path: /logout

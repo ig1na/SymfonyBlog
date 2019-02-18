@@ -10,7 +10,7 @@ use Doctrine\Migrations\AbstractMigration;
 /**
  * Auto-generated Migration: Please modify to your needs!
  */
-final class Version20190217235613 extends AbstractMigration
+final class Version20190218143923 extends AbstractMigration
 {
     public function getDescription() : string
     {
@@ -22,6 +22,8 @@ final class Version20190217235613 extends AbstractMigration
         // this up() migration is auto-generated, please modify it to your needs
         $this->abortIf($this->connection->getDatabasePlatform()->getName() !== 'mysql', 'Migration can only be executed safely on \'mysql\'.');
 
+        $this->addSql('ALTER TABLE user ADD api_token VARCHAR(255) NOT NULL, CHANGE roles roles JSON NOT NULL');
+        $this->addSql('CREATE UNIQUE INDEX UNIQ_8D93D6497BA2F5EB ON user (api_token)');
         $this->addSql('ALTER TABLE article CHANGE edit_date edit_date DATETIME DEFAULT NULL');
     }
 
@@ -31,5 +33,7 @@ final class Version20190217235613 extends AbstractMigration
         $this->abortIf($this->connection->getDatabasePlatform()->getName() !== 'mysql', 'Migration can only be executed safely on \'mysql\'.');
 
         $this->addSql('ALTER TABLE article CHANGE edit_date edit_date DATETIME DEFAULT \'NULL\'');
+        $this->addSql('DROP INDEX UNIQ_8D93D6497BA2F5EB ON user');
+        $this->addSql('ALTER TABLE user DROP api_token, CHANGE roles roles LONGTEXT NOT NULL COLLATE utf8mb4_bin');
     }
 }

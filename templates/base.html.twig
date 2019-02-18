@@ -15,9 +15,21 @@
                     <li class="nav-item active">
                         <a class="nav-link" href="/">Home<span class="sr-only">(current)</span></a>
                     </li>
+                    {% if is_granted('ROLE_ADMIN') %}
                     <li class="nav-item">
-                        <a class="nav-link" href="/newPost">New post</a>
+                        <a class="nav-link" href="/article/new">New post</a>
                     </li>
+                    {% endif %}
+                    {% if not is_granted('IS_AUTHENTICATED_FULLY') %}
+                    <li class="nav-item mr-0">
+                        <a class="nav-link" href="/login">Login</a>
+                    </li>
+                    {% endif %}
+                    {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="/logout">Logout</a>
+                    </li>
+                    {% endif %}
                 </ul>
             </nav>
         {% endblock %}
